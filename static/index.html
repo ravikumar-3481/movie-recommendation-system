@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineMatch AI — Smart Movie Recommendations</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/styles.css">
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <!-- Header Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i data-lucide="film" class="logo-icon"></i>
+                <span class="logo-text">Cine<span class="accent-text">Match</span></span>
+                <span class="logo-badge">AI</span>
+            </div>
+            <div class="nav-links">
+                <a href="#search-section" class="nav-link active">Search</a>
+                <a href="#model-info" class="nav-link">How it Works</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero-section" id="search-section">
+            <div class="hero-bg-gradient"></div>
+            <div class="hero-container">
+                <h1 class="hero-title">Discover Your Next Favorite Movie</h1>
+                <p class="hero-subtitle">
+                    Enter a movie you love, and our content-based recommender will analyze thousands of films to find the perfect matches.
+                </p>
+
+                <!-- Search Container -->
+                <div class="search-container">
+                    <div class="search-box">
+                        <i data-lucide="search" class="search-icon"></i>
+                        <input 
+                            type="text" 
+                            id="movie-search-input" 
+                            placeholder="Type a movie title (e.g. Inception, The Dark Knight...)"
+                            autocomplete="off"
+                        >
+                        <button id="clear-search-btn" class="clear-btn" style="display: none;">
+                            <i data-lucide="x"></i>
+                        </button>
+                    </div>
+                    <!-- Autocomplete Dropdown -->
+                    <div id="autocomplete-dropdown" class="autocomplete-dropdown" style="display: none;">
+                        <!-- JS injects suggestion list here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Selected Movie Details Section -->
+        <section id="movie-details-section" class="details-section" style="display: none;">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Selected Movie</h2>
+                    <div class="divider"></div>
+                </div>
+                <div class="movie-showcase-card">
+                    <div class="movie-poster-wrapper" id="query-poster-container">
+                        <!-- Poster Image or Fallback Card injected here -->
+                    </div>
+                    <div class="movie-info-pane">
+                        <div class="movie-badge-row">
+                            <span class="badge badge-year" id="query-year">2010</span>
+                            <span class="badge badge-rating" id="query-rating-badge">
+                                <i data-lucide="star" class="star-icon"></i>
+                                <span id="query-rating-val">8.8</span>
+                            </span>
+                        </div>
+                        <h3 class="movie-showcase-title" id="query-title">Inception</h3>
+                        <div class="genre-pills" id="query-genres">
+                            <!-- Pills injected here -->
+                        </div>
+                        <p class="movie-meta-item">
+                            <i data-lucide="users"></i>
+                            <span id="query-votes">1,200,000</span> votes on IMDb
+                        </p>
+                        <p class="movie-meta-item">
+                            <i data-lucide="link"></i>
+                            <a id="query-imdb-link" href="#" target="_blank" class="text-link">View on IMDb</a>
+                        </p>
+                        <div class="action-row">
+                            <button class="primary-btn" id="find-similar-trigger">
+                                <i data-lucide="sparkles"></i> Find Recommendations
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recommendations Grid Section -->
+        <section id="recommendations-section" class="recommendations-section" style="display: none;">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title">Recommended For You</h2>
+                        <p class="section-subtitle">Top 6 matches based on genre, release era, and metadata tags</p>
+                    </div>
+                    <div class="calc-time-badge">
+                        <i data-lucide="zap"></i>
+                        <span>Match speed: <strong id="calc-time">0.12s</strong></span>
+                    </div>
+                </div>
+                
+                <div class="recommendations-grid" id="recommendations-grid">
+                    <!-- Recommended Movie Cards injected here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Features/Model Explainer Section -->
+        <section class="info-section" id="model-info">
+            <div class="container">
+                <div class="section-header centered">
+                    <h2 class="section-title">Inside the Algorithm</h2>
+                    <p class="section-subtitle">How CineMatch AI computes your recommendations</p>
+                    <div class="divider center"></div>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon-wrapper">
+                            <i data-lucide="braces"></i>
+                        </div>
+                        <h3 class="feature-title">Metadata Tagging</h3>
+                        <p class="feature-desc">
+                            The algorithm extracts and processes title, genre keywords, release year, and director metadata into a unified tag corpus for each of the 16,252 movies.
+                        </p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon-wrapper">
+                            <i data-lucide="binary"></i>
+                        </div>
+                        <h3 class="feature-title">Count Vectorization</h3>
+                        <p class="feature-desc">
+                            Tags are tokenized and transformed into a 5,000-dimensional sparse frequency matrix. This filters out noise words while amplifying common structural patterns.
+                        </p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon-wrapper">
+                            <i data-lucide="compass"></i>
+                        </div>
+                        <h3 class="feature-title">Cosine Similarity</h3>
+                        <p class="feature-desc">
+                            Recommendations are computed on-the-fly by measuring the cosine angle between the selected movie's tag vector and all 16,251 other vectors.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="technical-details-box">
+                    <h4 class="tech-title">Model Specifications</h4>
+                    <ul class="tech-list">
+                        <li><strong>Dataset size:</strong> 16,252 curated movies (IMDb top rating & popularity)</li>
+                        <li><strong>Feature limit:</strong> 5,000 unique stems (English stop words excluded)</li>
+                        <li><strong>Backend engine:</strong> Python, FastAPI, Pandas, Scikit-learn (sparse implementation)</li>
+                        <li><strong>In-Memory overhead:</strong> &lt; 8MB (Sparse CSR matrix representation)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <i data-lucide="film" class="logo-icon"></i>
+                <span class="logo-text">Cine<span class="accent-text">Match</span></span>
+            </div>
+            <p class="footer-credits">Created using <strong>FastAPI</strong> and <strong>CountVectorizer</strong>.</p>
+        </div>
+    </footer>
+
+    <!-- Custom Script -->
+    <script src="/static/app.js"></script>
+</body>
+</html>
