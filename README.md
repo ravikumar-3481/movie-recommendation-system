@@ -73,6 +73,11 @@ The backend is served via **FastAPI**, with similarity scores computed on-the-fl
 
 ## 🏗️ Architecture Overview
 
+![System Architecture](screenshots/system_architecture.png)
+
+<details>
+<summary>💻 View Mermaid Diagram Source</summary>
+
 ```mermaid
 flowchart LR
     A[🌐 Browser / Static Frontend] -->|HTTP Request| B[FastAPI Server]
@@ -87,9 +92,16 @@ flowchart LR
     B -->|JSON Response| A
 ```
 
+</details>
+
 ---
 
-## 🔄 How Recommendations Work
+## 🔄 How Recommendations Work & NLP Pipeline
+
+![System Data Flow & Pipeline](screenshots/system_flow.png)
+
+<details>
+<summary>💻 View Mermaid Diagram Source</summary>
 
 ```mermaid
 flowchart TD
@@ -108,8 +120,42 @@ flowchart TD
     M --> N[📦 JSON response to client]
 ```
 
+</details>
+
+---
+
+## 📐 Cosine Similarity Matching Pipeline
+
+Detailed mathematical matching representation of the NLP model:
+
+![Cosine Similarity Pipeline](screenshots/similarity_pipeline.png)
+
 **Why on-the-fly instead of a precomputed full similarity matrix?**
 Computing a full `16,252 × 16,252` similarity matrix upfront would use significant memory. Instead, `app.py` keeps only the sparse vectorized representation in memory and computes cosine similarity for **just the requested row** at request time — a good memory/latency trade-off at this dataset size.
+
+---
+
+## ⏱️ Runtime API Sequence Flow
+
+Visual representation of search autocomplete and recommendation requests lifecycle:
+
+![API Sequence Diagram](screenshots/sequence_diagram.png)
+
+---
+
+## 🐳 Production Deployment Infrastructure
+
+Sleek architectural topology layout for deploying, scaling, and caching in production:
+
+![Production Deployment Topology](screenshots/deployment_architecture.png)
+
+---
+
+## 📁 System Design & Codebase Folder Structure
+
+Visual tree representation showing how codebase directories and components map to their functional roles:
+
+![Codebase Folder Structure Map](screenshots/folder_structure.png)
 
 ---
 
