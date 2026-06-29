@@ -4,6 +4,15 @@
 
 **A FastAPI-powered movie recommender that suggests similar titles using NLP-based content similarity over 16,000+ IMDB movies.**
 
+
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit%20App-brightgreen?style=for-the-badge)](https://cin-match-ai.vercel.app/)
+
+
+
+
+
+
+
 ![Python](https://img.shields.io/badge/Python-3.9%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)
 ![Uvicorn](https://img.shields.io/badge/Uvicorn-ASGI%20Server-2A2A2A?style=for-the-badge&logo=gunicorn&logoColor=white)
@@ -62,7 +71,7 @@ The backend is served via **FastAPI**, with similarity scores computed on-the-fl
 
 | | |
 |---|---|
-| **Status** | 🚧 Not currently deployed |
+| **Status** | Deployed On Vercel And Render |
 | **Local URL** | `http://127.0.0.1:8000` (after running locally — see [Getting Started](#-getting-started)) |
 
 > 💡 Once you deploy this (e.g. on Render, Railway, Fly.io, or a VPS), drop the live link here:
