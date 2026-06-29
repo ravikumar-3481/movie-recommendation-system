@@ -221,6 +221,19 @@ app.mount("/static", StaticFiles(directory=static_dir), name="static")
 def read_root():
     return FileResponse(os.path.join(static_dir, "index.html"))
 
+@app.get("/favicon.ico")
+@app.get("/favicon.svg")
+def get_favicon():
+    return FileResponse(os.path.join(static_dir, "favicon.svg"), media_type="image/svg+xml")
+
+@app.get("/styles.css")
+def get_styles():
+    return FileResponse(os.path.join(static_dir, "styles.css"))
+
+@app.get("/app.js")
+def get_js():
+    return FileResponse(os.path.join(static_dir, "app.js"))
+
 if __name__ == "__main__":
     import uvicorn
     # Start on port 8000
