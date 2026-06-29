@@ -150,7 +150,7 @@ def get_recommendations(request: RecommendRequest):
         })
         
         # Return exactly top 6 recommendations
-        if len(recommendations) >= 6:
+        if len(recommendations) >= 8:
             break
             
     # Gather details for the query movie
