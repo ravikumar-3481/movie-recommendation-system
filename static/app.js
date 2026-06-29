@@ -1,3 +1,5 @@
+const API_BASE_URL = 'https://movie-recommendation-system-2-wuqg.onrender.com';
+
 document.addEventListener('DOMContentLoaded', () => {
     // Elements
     const searchInput = document.getElementById('movie-search-input');
@@ -67,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Fetch matching movies from the API
     async function fetchAutocompleteSuggestions(query) {
         try {
-            const response = await fetch(`/api/movies?q=${encodeURIComponent(query)}`);
+            const response = await fetch(`${API_BASE_URL}/api/movies?q=${encodeURIComponent(query)}`);
             if (!response.ok) throw new Error("Search failed");
             
             suggestionList = await response.json();
@@ -223,7 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-            const response = await fetch(`/api/poster/${imdbId}`);
+            const response = await fetch(`${API_BASE_URL}/api/poster/${imdbId}`);
             if (!response.ok) throw new Error();
             const data = await response.json();
             
@@ -267,7 +269,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const startTime = performance.now();
         try {
-            const response = await fetch('/api/recommend', {
+            const response = await fetch(`${API_BASE_URL}/api/recommend`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ index: index })
