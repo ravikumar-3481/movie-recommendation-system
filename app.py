@@ -27,6 +27,7 @@ app.add_middleware(
 
 # Global variables for caching loaded data and model vector representations
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR = os.path.join(BASE_DIR, "data")
 df = None
 df2 = None
 cv = None
@@ -37,11 +38,11 @@ poster_cache = {}
 def startup_event():
     global df, df2, cv, vector_sparse
     print("Loading datasets...")
-    df_path = os.path.join(BASE_DIR, "preproccess_data.csv")
-    df2_path = os.path.join(BASE_DIR, "cleaned-movie-data.csv")
+    df_path = os.path.join(DATA_DIR, "preproccess_data.csv")
+    df2_path = os.path.join(DATA_DIR, "cleaned-movie-data.csv")
     
     if not os.path.exists(df_path) or not os.path.exists(df2_path):
-        raise RuntimeError(f"Required CSV files not found in {BASE_DIR}")
+        raise RuntimeError(f"Required CSV files not found in {DATA_DIR}")
         
     df = pd.read_csv(df_path)
     df2 = pd.read_csv(df2_path)
